@@ -3,7 +3,101 @@
  * @author Silvia Mesa
  */
 
-async function cargarDatos() {
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+      //     COMIENZO    DEL    BLOQUE    DE    BUSQUEDA      //
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
+async function buscarPiloto(terminoBusqueda) {
+  try {
+    // Crear una expresión regular con el término de búsqueda
+    const expresionRegular = new RegExp(`^${terminoBusqueda}`, 'i');
+
+    // Realizar la petición al archivo JSON
+    const peticion = await fetch('../files/ranking.json');
+
+    if (!peticion.ok) {
+      throw new Error(`Error ${peticion.status}`);
+    }
+
+    const ranking = await peticion.json();
+
+    // Filtrar los pilotos que coincidan con la expresión regular
+    const resultado = ranking.filter(piloto => expresionRegular.test(piloto.driver.name));
+
+    // Procesar el resultado según la estructura de tus datos
+    return resultado;
+  } catch (error) {
+    console.error("Error fetching or parsing JSON:", error.message);
+    return null; // Retorna null en caso de un error
+  }
+};
+
+
+
+
+
+async function buscarCircuito(terminoBusqueda) {
+  try {
+    // Crear una expresión regular con el término de búsqueda
+    const expresionRegular = new RegExp(`^${terminoBusqueda}`, 'i');
+
+    // Realizar la petición al archivo JSON
+    const peticion = await fetch('../files/circuits.json');
+
+    if (!peticion.ok) {
+      throw new Error(`Error ${peticion.status}`);
+    }
+
+    const circuitos = await peticion.json();
+
+    // Filtrar los pilotos que coincidan con la expresión regular
+    const resultado = circuitos.filter(circuito => expresionRegular.test(circuito.circuit.name));
+
+    // Procesar el resultado según la estructura de tus datos
+    return resultado;
+  } catch (error) {
+    console.error("Error fetching or parsing JSON:", error.message);
+    return null; // Retorna null en caso de un error
+  }
+};
+
+
+
+
+
+async function buscarEquipo(terminoBusqueda) {
+  try {
+    // Crear una expresión regular con el término de búsqueda
+    const expresionRegular = new RegExp(`^${terminoBusqueda}`, 'i');
+
+    // Realizar la petición al archivo JSON
+    const peticion = await fetch('../files/teams.json');
+
+    if (!peticion.ok) {
+      throw new Error(`Error ${peticion.status}`);
+    }
+
+    const equipos = await peticion.json();
+
+    // Filtrar los pilotos que coincidan con la expresión regular
+    const resultado = equipos.filter(equipo => expresionRegular.test(equipos.name));
+
+    // Procesar el resultado según la estructura de tus datos
+    return resultado;
+  } catch (error) {
+    console.error("Error fetching or parsing JSON:", error.message);
+    return null; // Retorna null en caso de un error
+  }
+};
+
+
+
+
+
+async function buscarPilotos() {
   try {
     const peticion = await fetch('../files/ranking.json');
     
@@ -22,8 +116,16 @@ async function cargarDatos() {
   }
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+      //     COMIENZO     DEL    BLOQUE     DE      IMPRESION    //
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+
+
 async function listarPilotos() {
-  let ranking = await cargarDatos();
+  let ranking = await buscarPilotos();
   const pilotosContainer = document.getElementById('pilotos');
   pilotosContainer.classList.add('flex', 'flex-wrap', 'justify-start', 'piloto', 'w-full', 'lg:w-1/2')
 
@@ -65,9 +167,58 @@ async function listarPilotos() {
       pilotosContainer.appendChild(contenedorPiloto);
     });
   }
+};
+
+
+async function listarEquipos(){
+  
 }
 
-// Llama a la función para cargar datos al cargar la página
+
+
+
+
+
 window.addEventListener('load', function () {
+  // Cuando la página se carga, quiero que se listen los pilotos
   listarPilotos();
+
+  // Quiero que se escuche al buscador
+  const searchInput = document.getElementById('search-dropdown');
+
+  searchInput.addEventListener('input', async function (event) {
+    const terminoBusqueda = event.target.value.trim().toLowerCase();
+    
+    // Si tenemos criterio en el buscador...
+    if (terminoBusqueda) {
+      // Que busque primero por piloto
+      const resultadosPiloto = await buscarPiloto(terminoBusqueda);
+      
+      // Si la búsqueda de pilotos da fruto, que imprima pilotos
+      if (resultadosPiloto && resultadosPiloto.length > 0) {
+        // Procesar los resultados de pilotos
+        console.log(resultadosPiloto);
+      } else {
+        // Si no, que busque en circuitos
+        const resultadosCircuito = await buscarCircuito(terminoBusqueda);
+
+        if (resultadosCircuito && resultadosCircuito.length > 0) {
+          // Procesar los resultados de circuitos
+          console.log(resultadosCircuito);
+        } else {
+          // Si no encuentra en circuitos, que busque en los equipos
+          const resultadosEquipo = await buscarEquipo(terminoBusqueda);
+          
+          // Y por último, si no encuentra en equipos, que liste los pilotos (todos)
+          if (resultadosEquipo && resultadosEquipo.length > 0) {
+            // Procesar los resultados de equipos
+            console.log(resultadosEquipo);
+          } else {
+            listarPilotos();
+          }
+        }
+      }
+    }
+  });
 });
+
