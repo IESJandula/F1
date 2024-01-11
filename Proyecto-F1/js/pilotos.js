@@ -1,3 +1,7 @@
+/**
+ * Esta clase es el controlador de la vista pilotos, se encarga de realizar la peticion a la API, y mostrar los datos
+ * @author Silvia Mesa
+ */
 async function cargarDatos() {
   try {
 
@@ -27,7 +31,7 @@ async function listarPilotos(){
       for (const piloto of ranking) {
         // Crear un contenedor para cada piloto
         const contenedorPiloto = document.createElement('div');
-        contenedorPiloto.classList.add('flex', 'flex-wrap', 'justify-center', 'piloto'); // Agregar clases aquí
+        contenedorPiloto.classList.add('flex', 'flex-wrap', 'justify-center', 'piloto','w-full','lg:w-1/2'); // Agregar clases aquí
   
         // Crear una tarjeta para cada piloto
         const tarjetaPiloto = document.createElement('a');
@@ -87,7 +91,8 @@ async function listarPilotos(){
       }
     }
 
-}
+};
+
 
 
 // Llama a la función para cargar datos al cargar la página*/
