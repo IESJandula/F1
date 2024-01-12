@@ -14,10 +14,22 @@
 
       /* Estilo para las tarjetas individuales */
       .flex-col {
-          width: 2000px; /* Tamaño fijo para todas las tarjetas */
-          height: 200px; /* Puedes ajustar la altura según tus necesidades */
-          box-sizing: border-box;
-          margin: 10px; /* Puedes ajustar el margen según tus necesidades */
+        width: 2000px; /* Tamaño fijo para todas las tarjetas */
+        height: 200px; /* Puedes ajustar la altura según tus necesidades */
+        box-sizing: border-box;
+        margin: 10px; /* Puedes ajustar el margen según tus necesidades */
+        transition: transform 0.3s ease;
+      }
+      /*Aplicamos un zoom de 1.1 de escala*/
+      .flex-col:hover {
+        transform: scale(
+          1.1
+        ); /* Aplica un zoom del 10% cuando el mouse está sobre la tarjeta */
+        background-color: black;
+      }
+      /*Controla que el texto no se desborde cuando haga zoom la tarjeta*/
+      div.flex-col:hover {
+        transform: scale(1);
       }
     </style>
   </head>
@@ -40,14 +52,12 @@
       <a class="text-black" href="src/circuitos.html">Circuitos</a>
     </nav>
   </header>
-  
+
   <body>
-  <!--Aqui empiea la carta de pilotos-->
-  <div id="pilotos">
-    
-  </div>
-  <!--Aqui termina la carta de pilotos-->
-  
+    <!--Aqui empiea la carta de pilotos-->
+    <div id="pilotos"></div>
+    <!--Aqui termina la carta de pilotos-->
+
     <script src="../js/pilotos.js"></script>
   </body>
 </html>
