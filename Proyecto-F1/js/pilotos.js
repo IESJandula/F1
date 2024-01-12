@@ -38,6 +38,63 @@ async function buscarPilotos(terminoBusqueda) {
 }
 
 
+
+
+async function buscarEquipos(terminoBusqueda) {
+  try {
+    // Realizar la petición al archivo JSON
+    const peticion = await fetch('../files/teams.json');
+
+    if (!peticion.ok) {
+      throw new Error(`Error ${peticion.status}`);
+    }
+
+    const ranking = await peticion.json();
+
+    if (terminoBusqueda) {
+      // Si se proporciona un término de búsqueda, filtrar los pilotos que coincidan
+      const expresionRegular = new RegExp(`^${terminoBusqueda}`, 'i');
+      const resultado = ranking.filter(equipo => expresionRegular.test(equipo.name));
+      console.log(resultado);
+      return resultado;
+    } else {
+      // Si no se proporciona un término de búsqueda, retornar el ranking completo
+      return ranking;
+    }
+  } catch (error) {
+    console.error("Error fetching or parsing JSON:", error.message);
+    return null; // Retorna null en caso de un error
+  }
+}
+
+
+
+async function buscarCircuitos(terminoBusqueda) {
+  try {
+    // Realizar la petición al archivo JSON
+    const peticion = await fetch('../files/circuits.json');
+
+    if (!peticion.ok) {
+      throw new Error(`Error ${peticion.status}`);
+    }
+
+    const ranking = await peticion.json();
+
+    if (terminoBusqueda) {
+      // Si se proporciona un término de búsqueda, filtrar los pilotos que coincidan
+      const expresionRegular = new RegExp(`^${terminoBusqueda}`, 'i');
+      const resultado = ranking.filter(circuito => expresionRegular.test(circuito.circuit.name));
+      console.log(resultado);
+      return resultado;
+    } else {
+      // Si no se proporciona un término de búsqueda, retornar el ranking completo
+      return ranking;
+    }
+  } catch (error) {
+    console.error("Error fetching or parsing JSON:", error.message);
+    return null; // Retorna null en caso de un error
+  }
+}
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 //     F  U  N  C  I  O  N      D  E       R  E  P  R  E  S  E  N  T  A  C  I  O  N      //
@@ -110,6 +167,7 @@ async function listarPilotos(resultado) {
 
 
 window.addEventListener('load', async function () {
+
   // Cuando la página se carga, quiero que se listen los pilotos
   const resultadosPiloto = await buscarPilotos();
   listarPilotos(resultadosPiloto);
@@ -132,7 +190,21 @@ window.addEventListener('load', async function () {
         listarPilotos(resultadosPiloto);
       } else {
         // Si no encuentra en pilotos, puedes manejarlo aquí
-        console.log("No se encontraron pilotos");
+        const resultadoEquipos = await buscarEquipos(terminoBusqueda);
+        if(resultadoEquipos && resultadoEquipos.length > 0){
+            console.log(resultadoEquipos);
+            //listarEquipos(resultadoEquipos);
+        }else{
+          const resultadoCircuitos = await buscarCircuitos(terminoBusqueda);
+          if( resultadoCircuitos && resultadoCircuitos.length > 0){
+            console.log(resultadoCircuitos);
+            //listarCircuitos(resultadoCircuitos);
+          }else{
+            //si el criterio de busqueda no coincide con nada listo todos los pilotos
+            const resultadosPiloto = await buscarPilotos();
+            listarPilotos(resultadosPiloto);
+          }
+        }
       }
     } else {
       // Si no hay criterio de búsqueda, listar todos los pilotos
