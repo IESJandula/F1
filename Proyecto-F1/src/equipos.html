@@ -9,7 +9,9 @@ si lo encuentra(tiene que tener un evento asocioado a cambios porque no tiene im
     <link href="../css/output.css" rel="stylesheet" />
     <title>Equipos</title>
 </head>
-<header class="py-8 px-4 mx-auto max-w-xl lg:py-6 lg:px-6">
+
+<body>
+  <header class="py-8 px-4 mx-auto max-w-xl lg:py-6 lg:px-6">
     <div class="mx-auto text-center mb-8 lg:mb-16">
       <h2 class="mb-4 text-5xl tracking-tight font-extrabold text-black">
         Formula 1 🏁
@@ -43,22 +45,9 @@ si lo encuentra(tiene que tener un evento asocioado a cambios porque no tiene im
         </div>
       </form>
   </header>
-<body>
-    <script>
-        async function buscarPiloto(query) {
-          try {
-            // Realiza una solicitud AJAX para cargar el archivo JSON
-            const response = await fetch("teams.json");
-            const data = await response.json();
-  
-            // Aquí puedes realizar la lógica de búsqueda con el valor de 'query' y el contenido del archivo JSON ('data')
-            console.log("Search query:", query);
-            console.log("JSON data:", data);
-            // Puedes implementar la lógica de búsqueda aquí utilizando 'query' y 'data'
-          } catch (error) {
-            console.error("Error fetching or parsing JSON:", error);
-          }
-        }
-      </script>
+
+  <div id="equipos" class="flex flex-wrap justify-center"></div>
+  <script src="../js/equipos.js"></script>
+
 </body>
 </html>
