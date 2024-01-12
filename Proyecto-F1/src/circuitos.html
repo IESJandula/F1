@@ -15,11 +15,30 @@ si lo encuentra(tiene que tener un evento asocioado a cambios porque no tiene im
           flex-wrap: wrap;
           justify-content: center;
       }
+      /*Ajustamos tamaño de la imagen*/
+      .object-cover{
+        width: 50%;
+        height: auto;
+      }
 
       /* Estilo para las tarjetas individuales */
       .flex-col {
-          width: 30%; /* Cada tarjeta ocupa el 50% del contenedor */
+          width: 500px; /* Tamaño fijo para todas las tarjetas */
+          height: 200px; /* Puedes ajustar la altura según tus necesidades */
           box-sizing: border-box; /* Incluye el padding y el borde en el ancho de la tarjeta */
+          margin: 10px; /* Puedes ajustar el margen según tus necesidades */
+          overflow: hidden;/*controlamos el desbordamiento del contenedor*/
+          transition: transform 0.3s ease; /*Preparamos la tarjeta para que haga animacion*/
+      }
+
+      /*Aplicamos un zoom de 1.1 de escala*/
+      .flex-col:hover {
+        transform: scale(1.1); /* Aplica un zoom del 10% cuando el mouse está sobre la tarjeta */
+        background-color: black;
+      }
+      /*Controla que el texto no se desborde cuando haga zoom la tarjeta*/
+      div.flex-col:hover{
+        transform: scale(1);
       }
     </style>
 </head>
