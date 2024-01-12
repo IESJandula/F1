@@ -276,5 +276,45 @@ window.addEventListener('load', async function () {
   const resultadosPiloto = await buscarPilotos();                 ////////modificar por lo que toque se vaya a mostrar en la pagina
   listarPilotos(resultadosPiloto);                                 ////////modificar por lo que toque se vaya a mostrar en la pagina
 
+  // Quiero que se escuche al buscador
+  const searchInput = document.getElementById('search-dropdown');
+
+  searchInput.addEventListener('input', async function (event) {
+    const terminoBusqueda = event.target.value.trim().toLowerCase();
+
+    // Si tenemos criterio en el buscador...
+    if (terminoBusqueda) {
+      // Que busque primero por piloto
+      const resultadosPiloto = await buscarPilotos(terminoBusqueda);
+
+      // Si la búsqueda de pilotos da fruto, que imprima pilotos
+      if (resultadosPiloto && resultadosPiloto.length > 0) {
+        // Procesar los resultados de pilotos
+        console.log(resultadosPiloto);
+        listarPilotos(resultadosPiloto);
+      } else {
+        // Si no encuentra en pilotos, puedes manejarlo aquí
+        const resultadoEquipos = await buscarEquipos(terminoBusqueda);
+        if(resultadoEquipos && resultadoEquipos.length > 0){
+            console.log(resultadoEquipos);
+            listarEquipos(resultadoEquipos);
+        }else{
+          const resultadoCircuitos = await buscarCircuitos(terminoBusqueda);
+          if( resultadoCircuitos && resultadoCircuitos.length > 0){
+            console.log(resultadoCircuitos);
+            listarCircuitos(resultadoCircuitos);
+          }else{
+            //si el criterio de busqueda no coincide con nada listo todos los pilotos
+            const resultadosPiloto = await buscarPilotos();            ///////si no busca nada que muestr lo que toque en la pagina
+            listarPilotos(resultadosPiloto);                          ///////si no busca nada que muestr lo que toque en la pagina
+          }
+        }
+      }
+    } else {
+      // Si no hay criterio de búsqueda, listar todos los pilotos
+      const resultadosPiloto = await buscarPilotos();                   ///////si no busca nada que muestr lo que toque en la pagina
+      listarPilotos(resultadosPiloto);                        
+    }
+  });
 });
 
