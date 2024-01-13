@@ -1,0 +1,111 @@
+/*///////PÁGINA INDEX//////////////////////////////////////////////////////////////////////////////////*/
+@font-face {
+    font-family: 'F1Font'; /* Nombre que usarás para referenciar la fuente */
+    src: url('../fonts/Formula1-Regular-1.ttf') format('truetype'); /* Ruta real de tu archivo de fuente */
+    font-weight: normal;
+    font-style: normal;
+  }
+body{
+    /*importar tipografia de fonts*/
+    font-family: 'F1Font', sans-serif;
+    background-color: rgb(255, 255, 255)
+}
+.formula1{
+    width: 5%;
+    padding-left: 10px;
+    margin: 0;
+}
+.ranking{
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+}
+/* Estilos generales para el encabezado */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding-right: 10px;
+    background-color: rgb(21, 43, 87);
+    /*border-bottom: 6px solid red;*/
+}
+  /*///MENU INICIO/////////////////////////////////////////////////////////////////////////////*/
+  .menu_index nav{
+    padding-right: 40%;
+  }
+  /* Estilos para el contenedor del título e información */
+  header div {
+    text-align: center;
+  }
+  
+  /* Estilos para el menú de navegación */
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  nav a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: white !important;
+  }
+  
+  /* Estilos para el formulario de búsqueda */
+  form {
+    display: flex;
+    align-items: center;
+  }
+  
+  #search-dropdown {
+    padding: 10px;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    margin-right: 90px;
+  }
+  
+  /* Agregar un estilo específico para el hover en los enlaces del menú */
+  nav a:hover {
+    text-decoration: none;
+    color: red !important;
+  }
+/*/////////ESTILO TARJETAS - GENERAL//////////////////////////////////////////////////////////////////////////*/
+#pilotos, #caja, #circuito {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.object-cover{
+  width: 50%;
+  height: auto;
+}
+.flex-col{
+    width: 500px; /* Tamaño fijo para todas las tarjetas */
+    height: 200px; /* Puedes ajustar la altura según tus necesidades */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho de la tarjeta */
+    margin: 10px; /* Puedes ajustar el margen según tus necesidades */
+    overflow: hidden;/*controlamos el desbordamiento del contenedor*/
+    transition: transform 0.3s ease; /*Preparamos la tarjeta para que haga animacion*/
+    background-color: rgb(21, 43, 87);
+}
+
+.flex-equipo{
+    width: 500px; /* Tamaño fijo para todas las tarjetas */
+    height: 600px; /* Puedes ajustar la altura según tus necesidades */
+    box-sizing: border-box; /* Incluye el padding y el borde en el ancho de la tarjeta */
+    margin: 10px; /* Puedes ajustar el margen según tus necesidades */
+    overflow: hidden;/*controlamos el desbordamiento del contenedor*/
+    transition: transform 0.3s ease; /*Preparamos la tarjeta para que haga animacion*/
+    background-color: rgb(21, 43, 87);
+}
+.parrafo{
+    color: rgb(191, 191, 191);
+}
+.flex-col:hover {
+  transform: scale(1.1); /* Aplica un zoom del 10% cuando el mouse está sobre la tarjeta */
+  background-color: black;
+}
+div.flex-col:hover{
+  transform: scale(1);
+}

@@ -143,7 +143,7 @@ async function listarPilotos(resultado) {
       tituloPiloto.textContent = piloto.driver.name;
 
       const infoPiloto = document.createElement('p');
-      infoPiloto.classList.add('mb-3', 'font-normal', 'text-gray-700');
+      infoPiloto.classList.add('parrafo');
       infoPiloto.innerHTML = `Equipo del Piloto: ${piloto.team.name} \nRanking: ${piloto.position} \nCarreras ganadas: ${piloto.wins}`;
 
       contenidoTarjeta.appendChild(tituloPiloto);
@@ -166,7 +166,7 @@ async function listarEquipos(equipos){
     // Crear un elemento <a> para la tarjeta
     var tarjeta = document.createElement("a");
     tarjeta.href = "#";
-    tarjeta.className = "flex flex-col items-center bg-black border border-gray-200 rounded-lg shadow mb-4 mx-2 p-4 md:flex-row md:w-96 hover:bg-gray-700";
+    tarjeta.className = "flex flex-col items-center bg-black border border-gray-200 rounded-lg shadow mb-4 mx-2 p-4 md:flex-row md:w-96 hover:bg-gray-700 flex-equipo";
 
     // Crear un elemento <img> para el logo del equipo
     var logo = document.createElement('img');
@@ -177,7 +177,7 @@ async function listarEquipos(equipos){
 
     // Crear un elemento <div> para el contenido de la tarjeta
     var contenido = document.createElement("div");
-    contenido.className = "flex flex-col justify-between p-4 leading-normal";
+    contenido.className = "flex flex-col justify-between p-4 leading-normal flex-equipo";
 
     // Crear un elemento <h5> para el nombre del equipo
     var nombre = document.createElement("h5");
@@ -188,7 +188,7 @@ async function listarEquipos(equipos){
 
     // Crear un elemento <p> para la información del equipo
     var info = document.createElement("p");
-    info.className = "mb-3 font-normal text-gray-700";
+    info.className = 'parrafo';
     var textoInfo = document.createTextNode(
       "Base: " + equipos[i].base +
       "<br />Año de entrada: " + equipos[i].first_team_entry +
@@ -249,7 +249,7 @@ async function listarCircuitos(circuitos){
 
       // Crear un elemento <p> para la información del circuito (país y ciudad)
       var info = document.createElement("p");
-      info.className = "mb-3 font-normal text-gray-700";
+      info.className = 'parrafo';
       var textoInfo = document.createTextNode("País: " + circuitos[i].competition.location.country + "<br />Ciudad: " + circuitos[i].competition.location.city);
       info.innerHTML = textoInfo.textContent;
       contenido.appendChild(info);

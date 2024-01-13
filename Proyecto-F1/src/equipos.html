@@ -7,76 +7,36 @@ si lo encuentra(tiene que tener un evento asocioado a cambios porque no tiene im
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../css/output.css" rel="stylesheet" />
-    <title>Equipos</title>
-    <style>
-      /* Estilo para el contenedor de las tarjetas */
-      #caja {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      /* Estilo para las tarjetas individuales */
-      .flex-col {
-          width: 500px; /* Tamaño fijo para todas las tarjetas */
-          height: 400px; /* Puedes ajustar la altura según tus necesidades */
-          box-sizing: border-box;
-          margin: 10px; /* Puedes ajustar el margen según tus necesidades */
-          transition: transform 0.3s ease; /*Preparamos la tarjeta para que haga animacion*/
-      }
-      .object-cover{
-        width: 30%;
-        height: auto;
-      }
-      /*Aplicamos un zoom de 1.1 de escala*/
-      .flex-col:hover {
-        transform: scale(1.1); /* Aplica un zoom del 10% cuando el mouse está sobre la tarjeta */
-        background-color: black;
-      }
-      /*Controla que el texto no se desborde cuando haga zoom la tarjeta*/
-      div.flex-col:hover{
-        transform: scale(1);
-      }
-      
-    </style>
+    <link href="../css/style.css" rel="stylesheet" />
+    <title>Equipos - Fórmula 1</title>
 </head>
 
 <body>
-  <header class="py-8 px-4 mx-auto max-w-xl lg:py-6 lg:px-6">
-    <div class="mx-auto text-center mb-8 lg:mb-16">
-      <h2 class="mb-4 text-5xl tracking-tight font-extrabold text-black">
-        Formula 1 🏁
-      </h2>
-      <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">
-        Toda la informacion sobre Formula 1
-      </p>
-    </div>
-
-    <nav
-      class="flex flex-co items-center justify-between w-full text-center md:flex-row"
-    >
+  <header>
+    <img src="../img/f1.png" alt="Formula1" class="formula1">
+    <nav>
       <a class="text-black" href="../index.html">Formula 1</a>
-      <a class="text-black" href="./pilotos.html">Pilotos</a>
-      <a class="text-black" href="./equipos.html">Equipos</a>
-      <a class="text-black" href="./circuitos.html">Circuitos</a>
+      <a class="text-black" href="pilotos.html">Pilotos</a>
+      <a class="text-black" href="equipos.html">Equipos</a>
+      <a class="text-black" href="circuitos.html">Circuitos</a>
     </nav>
-
-    <form id="searchForm">
-        <div class="flex">
-          <div class="relative w-full">
+  
+    <form>
+        <div>
+          <div>
             <input
               type="search"
               id="search-dropdown"
               class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-full border-s-gray-50 border-s-2 border border-gray-300 focus:ring-gray-500 focus:border-gray-700"
               placeholder="Encuentra pilotos, equipos, circuitos..."
-              oninput="buscarEquipos(this.value)"
+              oninput="buscarCirucuitos(this.value)"
               required
             />
           </div>
         </div>
       </form>
   </header>
-
+  <h2 class="ranking">Equipos</h2>
   <div id="pilotos" class="flex flex-wrap justify-center"></div>
   <script src="../js/equipos.js"></script>
 

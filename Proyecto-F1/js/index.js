@@ -84,7 +84,7 @@ async function buscarPilotos() {
         tituloPiloto.textContent = piloto.driver.name;
   
         const infoPiloto = document.createElement('p');
-        infoPiloto.classList.add('mb-3', 'font-normal', 'text-gray-700');
+        infoPiloto.classList.add('parrafo');
         infoPiloto.innerHTML = `Equipo del Piloto: ${piloto.team.name} \nRanking: ${piloto.position} \nCarreras ganadas: ${piloto.wins}`;
   
         contenidoTarjeta.appendChild(tituloPiloto);
