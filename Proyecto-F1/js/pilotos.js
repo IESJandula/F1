@@ -144,7 +144,7 @@ async function listarPilotos(resultado) {
 
       const infoPiloto = document.createElement('p');
       infoPiloto.classList.add('parrafo');
-      infoPiloto.innerHTML = `Equipo del Piloto: ${piloto.team.name} \nRanking: ${piloto.position} \nCarreras ganadas: ${piloto.wins}`;
+      infoPiloto.innerHTML = `Equipo del Piloto: ${piloto.team.name} <p>Ranking: ${piloto.position} </p><p>Carreras ganadas: ${piloto.wins}</p>`;
 
       contenidoTarjeta.appendChild(tituloPiloto);
       contenidoTarjeta.appendChild(infoPiloto);
