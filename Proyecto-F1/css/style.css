@@ -91,8 +91,8 @@ header {
 }
 
 .flex-equipo{
-    width: 500px; /* Tamaño fijo para todas las tarjetas */
-    height: 600px; /* Puedes ajustar la altura según tus necesidades */
+    width: 600px; /* Tamaño fijo para todas las tarjetas */
+    height: 500px; /* Puedes ajustar la altura según tus necesidades */
     box-sizing: border-box; /* Incluye el padding y el borde en el ancho de la tarjeta */
     margin: 10px; /* Puedes ajustar el margen según tus necesidades */
     overflow: hidden;/*controlamos el desbordamiento del contenedor*/
@@ -102,10 +102,16 @@ header {
 .parrafo{
     color: rgb(191, 191, 191);
 }
-.flex-col:hover {
+.flex-col:hover{
   transform: scale(1.1); /* Aplica un zoom del 10% cuando el mouse está sobre la tarjeta */
+  background-color: black;
+}
+
+.flex-col:hover .p-4{
   background-color: black;
 }
 div.flex-col:hover{
   transform: scale(1);
 }
+
+
